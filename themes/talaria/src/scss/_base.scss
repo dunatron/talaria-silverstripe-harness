@@ -1,0 +1,102 @@
+@use 'tokens' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: $font-sans;
+  font-size: 15px;
+  line-height: 1.5;
+  color: $fg;
+  background-color: $bg;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 112, 243, 0.18), transparent),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: auto, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: $accent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 $space-3;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: $fg;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+p {
+  margin: 0 0 $space-4;
+  color: $fg-muted;
+}
+
+code,
+pre {
+  font-family: $font-mono;
+  font-size: 0.85em;
+}
+
+code {
+  padding: 0.1em 0.35em;
+  border-radius: $radius-sm;
+  background: $bg-muted;
+  border: 1px solid $border;
+  color: $fg;
+}
+
+ul,
+ol {
+  color: $fg-muted;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

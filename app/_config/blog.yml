@@ -1,0 +1,6 @@
+---
+Name: talaria-blog
+---
+SilverStripe\Core\Injector\Injector:
+  App\Demos\Blog\BlogPostRepository:
+    class: App\Demos\Blog\BlogPostRepository

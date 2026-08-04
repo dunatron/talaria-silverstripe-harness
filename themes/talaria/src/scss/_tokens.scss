@@ -1,0 +1,57 @@
+// Talaria dark theme tokens (aligned with marketing / product UI)
+
+$bg: #0a0a0a;
+$bg-elevated: #111111;
+$bg-muted: #171717;
+$border: #262626;
+$border-strong: #404040;
+$fg: #fafafa;
+$fg-muted: #a3a3a3;
+$fg-subtle: #737373;
+$accent: #0070f3;
+$accent-muted: rgba(0, 112, 243, 0.15);
+$danger: #e5484d;
+$success: #3dd68c;
+$warning: #f5a623;
+
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+$space-7: 48px;
+
+$max-width: 72rem;
+$header-height: 56px;
+
+$font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+$font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+:root {
+  --talaria-bg: #{$bg};
+  --talaria-bg-elevated: #{$bg-elevated};
+  --talaria-bg-muted: #{$bg-muted};
+  --talaria-border: #{$border};
+  --talaria-border-strong: #{$border-strong};
+  --talaria-fg: #{$fg};
+  --talaria-fg-muted: #{$fg-muted};
+  --talaria-fg-subtle: #{$fg-subtle};
+  --talaria-accent: #{$accent};
+  --talaria-accent-muted: #{$accent-muted};
+  --talaria-danger: #{$danger};
+  --talaria-success: #{$success};
+  --talaria-warning: #{$warning};
+  --talaria-radius-sm: #{$radius-sm};
+  --talaria-radius-md: #{$radius-md};
+  --talaria-radius-lg: #{$radius-lg};
+  --talaria-radius-xl: #{$radius-xl};
+  --talaria-max-width: #{$max-width};
+  --talaria-font-sans: #{$font-sans};
+  --talaria-font-mono: #{$font-mono};
+}

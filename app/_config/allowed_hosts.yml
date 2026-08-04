@@ -1,0 +1,8 @@
+---
+Name: app-allowed-hosts
+---
+SilverStripe\Control\Middleware\AllowedHostsMiddleware:
+  allowed_hosts:
+    - 'new-talaria-ss-test.ddev.site'
+    - 'localhost'
+    - '127.0.0.1'

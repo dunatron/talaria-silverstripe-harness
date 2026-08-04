@@ -1,0 +1,168 @@
+@use 'tokens' as *;
+
+.talaria-harness {
+  .talaria-flash {
+    margin: 0 0 $space-4;
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    border: 1px solid rgba($success, 0.45);
+    background: rgba($success, 0.1);
+    color: $success;
+  }
+
+  .talaria-status,
+  .talaria-practice {
+    margin: 0 0 $space-5;
+    padding: $space-4;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    background: $bg-elevated;
+  }
+
+  .talaria-status .ok {
+    color: $success;
+    font-weight: 600;
+  }
+
+  .talaria-status .warn {
+    color: $danger;
+    font-weight: 600;
+  }
+
+  .talaria-status ul {
+    margin: $space-3 0 0;
+    padding-left: 1.1rem;
+    color: $fg-muted;
+    font-size: 0.9rem;
+  }
+
+  .talaria-status li + li {
+    margin-top: $space-1;
+  }
+
+  .talaria-practice ol {
+    margin: $space-3 0 $space-4 1.25rem;
+    padding: 0;
+    line-height: 1.45;
+  }
+
+  .talaria-practice p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .talaria-actions {
+    margin: 0 0 $space-5;
+  }
+
+  .talaria-throws-section {
+    margin-top: $space-6;
+    padding-top: $space-5;
+    border-top: 1px solid $border;
+  }
+
+  .talaria-hint {
+    margin: 0 0 $space-4;
+    font-size: 0.95rem;
+    color: $fg-muted;
+    line-height: 1.45;
+  }
+
+  .talaria-sdk-banner {
+    margin: 0 0 $space-4;
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .talaria-sdk-banner.ok {
+    background: rgba($success, 0.1);
+    border: 1px solid rgba($success, 0.45);
+    color: $success;
+  }
+
+  .talaria-sdk-banner.warn {
+    background: rgba($danger, 0.1);
+    border: 1px solid rgba($danger, 0.45);
+    color: $danger;
+  }
+
+  .talaria-log {
+    margin: 0 0 $space-4;
+    padding: $space-3 $space-4;
+    background: $bg-muted;
+    border: 1px solid $border;
+    border-radius: $radius-md;
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    color: $fg-muted;
+    max-height: 10rem;
+    overflow: auto;
+    white-space: pre-wrap;
+  }
+
+  .talaria-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: $space-4;
+  }
+
+  .talaria-card {
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $space-4;
+    background: $bg-elevated;
+  }
+
+  .talaria-card.kind-exception {
+    border-color: rgba($danger, 0.55);
+  }
+
+  .talaria-card.kind-message {
+    border-color: rgba($accent, 0.55);
+  }
+
+  .talaria-card.kind-context,
+  .talaria-card.kind-batch {
+    border-color: rgba($success, 0.4);
+  }
+
+  .talaria-card.kind-network {
+    border-color: rgba($warning, 0.5);
+  }
+
+  .talaria-btn {
+    display: inline-block;
+    margin-bottom: $space-2;
+    padding: $space-2 $space-3;
+    background: $accent;
+    color: $fg !important;
+    text-decoration: none !important;
+    border: none;
+    border-radius: $radius-md;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.08);
+      text-decoration: none !important;
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  .talaria-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: $fg-muted;
+    line-height: 1.35;
+  }
+}

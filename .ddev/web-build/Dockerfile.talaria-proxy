@@ -1,0 +1,2 @@
+# Enable HTTP reverse proxy for same-origin browser → host Serverpod.
+RUN a2enmod proxy proxy_http

@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "slug": "welcome-to-talaria",
+      "title": "Welcome to Talaria",
+      "excerpt": "Why we built a focused error-tracking stack for PHP and browser apps.",
+      "body": "<p>Talaria captures exceptions, messages, and session context so you can fix issues faster.</p><p>This harness blog is rendered client-side from a local JSON fixture — useful for testing the npm <code>@newtalaria/browser</code> SDK alongside Silverstripe.</p>",
+      "author": "Talaria Team",
+      "publishedAt": "2026-08-01T10:00:00Z",
+      "tags": ["product", "sdk"]
+    },
+    {
+      "slug": "php-sdk-quickstart",
+      "title": "PHP SDK quickstart",
+      "excerpt": "Wire Monolog and TalariaClient into a Silverstripe project in minutes.",
+      "body": "<p>Install <code>newtalaria/logging</code>, set <code>TALARIA_DSN</code> and <code>TALARIA_API_KEY</code>, then flush after critical request paths.</p><p>Prefer the Injector client over calling <code>Talaria::init</code> repeatedly in controllers.</p>",
+      "author": "Ada Lovelace",
+      "publishedAt": "2026-07-22T14:30:00Z",
+      "tags": ["php", "silverstripe", "quickstart"]
+    },
+    {
+      "slug": "browser-sdk-with-vite",
+      "title": "Browser SDK with Vite",
+      "excerpt": "Bundle @newtalaria/browser from npm instead of relying on the CDN inject.",
+      "body": "<p>For app-owned frontends, install <code>@newtalaria/browser</code>, call <code>Talaria.init</code> once with DSN and API key, then route structured logs through a thin logger facade.</p><p>Keep <code>replaysSessionSampleRate</code> low in production and prefer error clips.</p>",
+      "author": "Grace Hopper",
+      "publishedAt": "2026-07-10T09:15:00Z",
+      "tags": ["browser", "typescript", "vite"]
+    },
+    {
+      "slug": "tags-that-actually-help",
+      "title": "Tags that actually help",
+      "excerpt": "entity, operation, and source tags make dashboard filters useful.",
+      "body": "<p>Use stable tags like <code>source=talaria_ss_test</code> and <code>entity=BlogDetailPage</code> so harness traffic is easy to isolate.</p><p>Avoid high-cardinality values (user ids, UUIDs) as tag keys — put those in <code>extra</code> or <code>userId</code>.</p>",
+      "author": "Talaria Team",
+      "publishedAt": "2026-06-28T16:00:00Z",
+      "tags": ["observability", "best-practices"]
+    },
+    {
+      "slug": "checkout-workflow-demo",
+      "title": "Instrumenting a checkout workflow",
+      "excerpt": "Milestone messages and handled payment failures with flush at the end.",
+      "body": "<p>Bootstrap tags and user context at the start of the action, emit a message per step, and capture handled exceptions without losing the stack.</p><p>Always <code>flush()</code> before redirecting so the batch leaves the process.</p>",
+      "author": "Kathleen Booth",
+      "publishedAt": "2026-06-12T11:45:00Z",
+      "tags": ["php", "workflows"]
+    }
+  ]
+}

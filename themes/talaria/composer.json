@@ -1,0 +1,13 @@
+{
+  "name": "newtalaria/ss-test-theme",
+  "description": "Talaria-branded theme for the Silverstripe harness",
+  "type": "silverstripe-theme",
+  "license": "proprietary",
+  "extra": {
+    "expose": [
+      "dist",
+      "images",
+      "javascript"
+    ]
+  }
+}

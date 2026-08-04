@@ -1,0 +1,8 @@
+# Mount the local Talaria PHP SDK so Composer path repos work inside the container.
+services:
+  web:
+    volumes:
+      - type: bind
+        source: /Users/dunatron/Projects/talaria/git/sdks/php
+        target: /var/www/talaria-logging
+        consistency: cached

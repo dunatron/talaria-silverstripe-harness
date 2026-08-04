@@ -1,0 +1,10 @@
+---
+Name: app-talaria-harness
+After:
+  - '#talaria-logging'
+---
+# Lower minLevel so info/warning harness buttons reach Talaria.
+Talaria\SilverStripe\Config:
+  minLevel: debug
+  maxBatchSize: 10
+  flushIntervalMs: 500

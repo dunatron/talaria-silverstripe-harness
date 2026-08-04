@@ -1,0 +1,68 @@
+{
+  "books": [
+    {
+      "id": "book-php-patterns",
+      "title": "PHP Design Patterns",
+      "author": "Ada Lovelace",
+      "price_cents": 3499,
+      "sku": "SKU-PHP-PAT",
+      "stock": 12
+    },
+    {
+      "id": "book-ss-internals",
+      "title": "Silverstripe Internals",
+      "author": "Grace Hopper",
+      "price_cents": 4299,
+      "sku": "SKU-SS-INT",
+      "stock": 5
+    },
+    {
+      "id": "book-observability",
+      "title": "Practical Observability",
+      "author": "Margaret Hamilton",
+      "price_cents": 3999,
+      "sku": "SKU-OBS-01",
+      "stock": 8
+    },
+    {
+      "id": "book-logging",
+      "title": "Structured Logging in Production",
+      "author": "Barbara Liskov",
+      "price_cents": 2999,
+      "sku": "SKU-LOG-01",
+      "stock": 20
+    },
+    {
+      "id": "book-monolog",
+      "title": "Monolog Deep Dive",
+      "author": "Donald Knuth",
+      "price_cents": 2799,
+      "sku": "SKU-MONO-1",
+      "stock": 3
+    },
+    {
+      "id": "book-checkout",
+      "title": "Checkout Systems That Scale",
+      "author": "Leslie Lamport",
+      "price_cents": 4599,
+      "sku": "SKU-CHK-01",
+      "stock": 0
+    },
+    {
+      "id": "book-sessions",
+      "title": "Session State and Carts",
+      "author": "Edsger Dijkstra",
+      "price_cents": 2499,
+      "sku": "SKU-SESS-1",
+      "stock": 15
+    },
+    {
+      "id": "book-errors",
+      "title": "Exception Handling Handbook",
+      "author": "Alan Turing",
+      "price_cents": 3199,
+      "sku": "SKU-ERR-01",
+      "stock": 7
+    }
+  ]
+}

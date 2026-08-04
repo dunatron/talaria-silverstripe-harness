@@ -1,0 +1,42 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Environment / secrets
+/.env
+/.env.local
+/.env.*.local
+
+# Silverstripe runtime / generated
+/silverstripe-cache/
+/.graphql-generated/
+/public/assets/
+/public/_resources/
+/public/_graphql/
+/assets/
+
+# Vite / frontend tooling
+/.vite/
+/themes/*/.vite/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# DDEV local state (keep .ddev/config.yaml and compose overlays tracked)
+.ddev/.homeadditions
+.ddev/.ssh
+.ddev/db_snapshots
+.ddev/sequelpro.spf
+.ddev/import.yaml
+.ddev/docker-compose.*.yaml.example
+.ddev/mutagen/.start-synced
+.ddev/traefik/certs/
+.ddev/xhprof/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
