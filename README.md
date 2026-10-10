@@ -119,7 +119,7 @@ For the same style of flow with **`Talaria\Logger`**, use the [Bookstore](#books
 
 Open **https://new-talaria-ss-test.ddev.site/talaria-browser**
 
-Thin PHP page with two JS bundles: (1) `talaria-browser-harness.js` exercises `window.Talaria` from the Silverstripe module’s **CDN** inject (`FrontendExtension`); (2) `talaria-browser-throws.js` only throws / rejects — no Talaria client calls — to prove auto-capture for plain page scripts. Expect `platform: web`, `runtime: silverstripe-frontend`; filter by tag `entity=TalariaBrowserPage`.
+Thin PHP page with two JS bundles: (1) `talaria-browser-harness.js` exercises `window.Talaria` from the Silverstripe module’s **CDN** inject (`FrontendExtension`); (2) `talaria-browser-throws.js` only throws / rejects — no Talaria client calls — to prove auto-capture for plain page scripts. Expect first-class field `platform: javascript` and tags `platform=web`, `runtime: silverstripe-frontend`; filter by tag `entity=TalariaBrowserPage`.
 
 If the console shows mixed-content errors to `http://host.docker.internal:8080`, set `TALARIA_BROWSER_DSN` (see Setup), `ddev restart`, then `ddev sake dev/build flush=1`.
 

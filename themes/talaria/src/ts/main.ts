@@ -15,14 +15,19 @@ async function boot(): Promise<void> {
     throw new Error('Missing data-talaria-config — set TALARIA_BROWSER_DSN / TALARIA_API_KEY');
   }
 
+  const props = parseDataJson<BlogProps>(mount, 'data-props');
+
   // Harness keeps info+ so successful render logs still ingest; production apps
   // should usually set minLevel: 'warning' in init options.
   Talaria.init({
     ...config,
     minLevel: config.minLevel ?? 'info',
+    tags: {
+      ...(config.tags ?? {}),
+      ...(props?.entity ? { entity: props.entity } : {}),
+    },
   });
 
-  const props = parseDataJson<BlogProps>(mount, 'data-props');
   if (!props) {
     mount.textContent = 'Failed to load blog data.';
     await Talaria.error('Failed to parse blog data-props', {
@@ -34,6 +39,7 @@ async function boot(): Promise<void> {
   const blogLogger = Talaria.logger({
     tags: {
       feature: 'blog',
+      entity: props.entity,
       operation: props.view === 'list' ? 'list_posts' : 'view_post',
     },
   });

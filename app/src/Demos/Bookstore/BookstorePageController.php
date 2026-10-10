@@ -7,6 +7,9 @@ namespace {
     use App\Demos\Bookstore\Cart;
     use App\Demos\Bookstore\Catalog;
     use App\Demos\Bookstore\CheckoutService;
+    use GuzzleHttp\Client as GuzzleClient;
+    use GuzzleHttp\HandlerStack;
+    use SilverStripe\CMS\Model\SiteTree;
     use SilverStripe\Control\Controller;
     use SilverStripe\Control\HTTPRequest;
     use SilverStripe\Control\HTTPResponse;
@@ -16,6 +19,8 @@ namespace {
     use SilverStripe\ORM\ArrayList;
     use SilverStripe\View\ArrayData;
     use Talaria\TalariaClient;
+    use Talaria\Tracing\GuzzleMiddleware;
+    use Talaria\Tracing\SpanKind;
 
     /**
      * @extends PageController<BookstorePage>
@@ -35,6 +40,10 @@ namespace {
             'failStock',
             'failEmpty',
             'status',
+            'slow',
+            'nPlusOne',
+            'outbound',
+            'queueJob',
         ];
 
         private ?Catalog $catalogInstance = null;
@@ -141,6 +150,48 @@ namespace {
                     'Title' => 'Empty cart check',
                     'Description' => 'Clears cart, then warn + captureException at validate (no charge).',
                     'Href' => $this->actionLink('failEmpty'),
+                    'Kind' => 'message',
+                ],
+            ];
+
+            $list = ArrayList::create();
+            foreach ($cases as $case) {
+                $list->push(ArrayData::create($case));
+            }
+
+            return $list;
+        }
+
+        /**
+         * APM demos: slow request, ORM N+1, outbound Guzzle, queue-style spans.
+         *
+         * @return ArrayList<ArrayData>
+         */
+        public function TracingDemos(): ArrayList
+        {
+            $cases = [
+                [
+                    'Title' => 'Slow action',
+                    'Description' => 'Sleeps 350ms under the request transaction so the waterfall shows a long child span.',
+                    'Href' => $this->actionLink('slow'),
+                    'Kind' => 'message',
+                ],
+                [
+                    'Title' => 'N+1 queries',
+                    'Description' => 'Loads SiteTree rows then re-fetches each by ID (repeated identical SELECTs).',
+                    'Href' => $this->actionLink('nPlusOne'),
+                    'Kind' => 'exception',
+                ],
+                [
+                    'Title' => 'Outbound Guzzle',
+                    'Description' => 'Application Guzzle client with traceparent to example.com (not the ingest client).',
+                    'Href' => $this->actionLink('outbound'),
+                    'Kind' => 'message',
+                ],
+                [
+                    'Title' => 'Queued job spans',
+                    'Description' => 'Inline producer/consumer messaging spans (QueuedJobs module not required).',
+                    'Href' => $this->actionLink('queueJob'),
                     'Kind' => 'message',
                 ],
             ];
@@ -367,6 +418,72 @@ namespace {
                     '?book=' . rawurlencode($book->id) . '&qty=1',
                 ),
             ]);
+        }
+
+        public function slow(HTTPRequest $request): HTTPResponse
+        {
+            $span = $this->client()->startSpan('usleep', SpanKind::Internal, [
+                'talaria.demo' => 'slow',
+            ]);
+            usleep(350000);
+            $span->end();
+
+            return $this->done('Slow action slept 350ms — check the Performance waterfall.');
+        }
+
+        public function nPlusOne(HTTPRequest $request): HTTPResponse
+        {
+            $pages = SiteTree::get()->limit(12);
+            $n = 0;
+            foreach ($pages as $page) {
+                $again = SiteTree::get()->byID($page->ID);
+                if ($again) {
+                    $n++;
+                }
+            }
+
+            return $this->done("N+1 demo: re-fetched {$n} SiteTree records by ID (repeated identical SELECTs).");
+        }
+
+        public function outbound(HTTPRequest $request): HTTPResponse
+        {
+            $client = $this->client();
+            $stack = HandlerStack::create();
+            $stack->push(GuzzleMiddleware::create($client), 'talaria_tracing');
+            $http = new GuzzleClient([
+                'handler' => $stack,
+                'timeout' => 3,
+                'http_errors' => false,
+            ]);
+
+            try {
+                $http->get('https://example.com/');
+
+                return $this->done('Outbound Guzzle request traced with traceparent.');
+            } catch (\Throwable $e) {
+                return $this->done('Outbound request failed (span still recorded): ' . $e->getMessage());
+            }
+        }
+
+        public function queueJob(HTTPRequest $request): HTTPResponse
+        {
+            $client = $this->client();
+            $produce = $client->startSpan('publish bookstore.demo', SpanKind::Producer, [
+                'messaging.system' => 'silverstripe',
+                'messaging.destination.name' => 'bookstore.demo',
+                'messaging.operation' => 'publish',
+            ]);
+            $produce->end();
+
+            $consume = $client->startSpan('process bookstore.demo', SpanKind::Consumer, [
+                'messaging.system' => 'silverstripe',
+                'messaging.destination.name' => 'bookstore.demo',
+                'messaging.operation' => 'process',
+            ]);
+            usleep(20000);
+            $consume->end();
+
+            return $this->done('Queued-job style producer/consumer spans recorded (inline).');
         }
 
         private function bookstoreCatalog(): Catalog

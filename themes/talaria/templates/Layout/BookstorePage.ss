@@ -40,6 +40,19 @@
 			<p>Contrast with <a href="/checkout-demo">Checkout workflow demo</a>, which instruments the same style of flow via <code>TalariaClient</code> directly.</p>
 		</section>
 
+		<section class="talaria-actions">
+			<h2>APM tracing demos</h2>
+			<p>Enable <code>TALARIA_ENABLE_TRACING=true</code> (or YAML <code>enableTracing: true</code>) then hit these actions. Filter Performance by route <code>bookstore</code>.</p>
+			<ul class="talaria-grid">
+				<% loop $TracingDemos %>
+					<li class="talaria-card kind-$Kind">
+						<a class="talaria-btn" href="$Href">$Title</a>
+						<p>$Description</p>
+					</li>
+				<% end_loop %>
+			</ul>
+		</section>
+
 		<% with $CartSummary %>
 			<section class="talaria-status">
 				<h2>Cart</h2>

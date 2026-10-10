@@ -8,3 +8,8 @@ Talaria\SilverStripe\Config:
   minLevel: debug
   maxBatchSize: 10
   flushIntervalMs: 500
+  enableTracing: true
+  tracesSampleRate: 1.0
+  enableAnalytics: true
+  browserReplaysSessionSampleRate: 0
+  browserReplaysOnErrorSampleRate: 1.0
